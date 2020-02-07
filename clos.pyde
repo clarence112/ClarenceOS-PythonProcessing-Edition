@@ -181,7 +181,8 @@ def draw():
             pass
             
     if sysmode == 256:
-        clpg.update()
+        if clpg.update() == 0:
+            sysmode = 254
         try:
             windowManager.update()
         except:

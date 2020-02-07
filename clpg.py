@@ -49,6 +49,7 @@ def update():
         if statuses[i] == "terminated":
             del processes[i - h]
             h = h + 1
+    return(len(processes))
    
 class process():
     
@@ -92,6 +93,13 @@ class process():
                 return(True)
         return(False)
     
+    def checkmods(self, inp):
+        global modules
+        for i in modules:
+            if i == inp:
+                return(True)
+        return(False)
+    
     def update(self):
         if self.type == "SCRIPT":
             currentline = self.progcode[self.pcounter].split(" ", 1)
@@ -100,6 +108,63 @@ class process():
                 oprands = currentline[1].split(" ", 2)
             except:
                 oprands = ""
+            
+            if instruction == "REQUIRE":
+                
+                if oprands[0] == "<":
+                    if not (self.checkmods(oprands[1])):
+                        self.type = "DEAD"
+                else:
+                    if not (self.checkmods(self.getvar(oprands[0]))):
+                        self.type = "DEAD"
+                self.pcounter = self.pcounter + 1
+                
+            elif instruction == "DEFINE":
+                
+                i = 1
+                while i > 0:
+                    self.pcounter = self.pcounter + 1
+                    if self.pcounter > len(self.progcode):
+                        i = 0
+                        self.type = "DEAD"
+                    elif self.progcode[self.pcounter] == "END":
+                        i = i - 1
+                    else:
+                        for i in ["IF", "WHILE"]:
+                            if i == self.progcode[self.pcounter].split(" ", 1)[0]:
+                                i = i + 1
+                
+            elif instruction == "CHECKMOD":
+                pass
+            elif instruction == "IF":
+                pass
+            elif instruction == "WHILE":
+                pass
+            elif instruction == "ELSE":
+                pass
+            elif instruction == "END":
+                pass
+            elif instruction == "OUTPUT":
+                pass
+            elif instruction == "CREATEVAR":
+                pass
+            elif instruction == "DELETEVAR":
+                pass
+            elif instruction == "SETVAR":
+                pass
+            elif instruction == "SPAWN":
+                pass
+            elif instruction == "JUMP":
+                pass
+            elif instruction == "JUMPS":
+                pass
+            elif instruction == "FNISH":
+                pass
+                
+            else:
+                self.pcounter = self.pcounter + 1
+                if self.pcounter > len(self.progcode):
+                    self.type = "DEAD"
             
             
             
