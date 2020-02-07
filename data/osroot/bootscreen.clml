@@ -1,0 +1,31 @@
+TYPE:markup
+
+DEFINE main
+
+COLOR 0x006062
+SHAPE background
+
+FONT /dat/Dialog.bold-120.vlw
+COLOR 0x003333
+DATA C
+VPOSITION center 240
+HPOSITION center -240
+ROTATION -15
+SHAPE text
+
+DATA L
+VPOSITION center 200
+HPOSITION center -120
+SHAPE text
+
+DTAT 0
+VPOSITION center 240
+HPOSITION center
+SHAPE text
+
+DATA S
+VPOSITION center 200
+HPOSITION center 120
+SHAPE text
+
+END

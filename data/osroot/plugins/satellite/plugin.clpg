@@ -1,0 +1,6 @@
+TYPE:UI
+
+GET_DEFS:looks.clml
+CURSOR_DEFAULT:[LOOK:curNormal.png, X:0, Y:0]
+WINDOWED_BAR:[LOOK:#barwindow, MINSIZE:200, MOVEMENT:static]
+BAR:[LOOK:#bar, MOVEMENT:static]
