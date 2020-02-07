@@ -44,7 +44,7 @@ def update():
     statuses = []
     h = 0
     for i in range(len(processes)):
-        satuses.append(processes[i].update())
+        statuses.append(processes[i].update())
     for i in range(len(statuses)):
         if statuses[i] == "terminated":
             del processes[i - h]
@@ -96,7 +96,10 @@ class process():
         if self.type == "SCRIPT":
             currentline = self.progcode[self.pcounter].split(" ", 1)
             insruction = currentline[0]
-            oprands = currentline[1].split(" ", 2)
+            try:
+                oprands = currentline[1].split(" ", 2)
+            except:
+                oprands = ""
             
             
             
